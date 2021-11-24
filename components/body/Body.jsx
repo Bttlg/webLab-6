@@ -19,14 +19,16 @@ import { FaRegShareSquare } from "react-icons/Fa";
 import axios from "axios";
 
 import "./Body.css";
+
 const Body = () => {
-  const [dataArr, setDataArr] = useState([1, 2, 3]);
+  const [dataArr, setDataArr] = useState([]);
   useEffect(() => {
     axios
-      .get("https://dummyapi.io/data/v1/user?limit=10")
+      .get("https://dummyapi.io/data/v1/post?limit=10", {
+        headers: { "app-id": "61911adc3864ca518755e018" },
+      })
       .then((response) => {
-        // setDataArr(response.data.data);
-        console.log(response);
+        setDataArr(response.data.data);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -35,28 +37,36 @@ const Body = () => {
     document.querySelector(".firstChild").classList.remove("focus");
   };
 
+  const { innerWidth: width, innerHeight: height } = window;
   return (
     <div>
-      <div className="newsfeedContainer">
+      <div className="newsfeedContainer" style={{ width: width }}>
         {dataArr.map((el, index) => {
           return (
-            <div className="postContainer" key={index}>
+            <div className="postContainer" key={el.id}>
               <div className="postTitleContainer">
-                <Link to="/Profile">
+                <Link
+                  to={{
+                    pathname: `/Profile/${el.owner.id}`,
+                    state: {
+                      data: el.owner,
+                    },
+                  }}
+                >
                   <img
                     className="postProfileImage"
-                    src="https://scontent.fuln1-2.fna.fbcdn.net/v/t1.6435-1/cp0/p40x40/251790235_282500163768706_8484372885486565698_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=1eb0c7&_nc_ohc=rExSB-jw43MAX_ukaFO&_nc_ht=scontent.fuln1-2.fna&oh=87d5d11a64597a7995341504330159b7&oe=61B26231"
+                    src={el.owner.picture}
                     alt=""
                     onClick={removeFocus}
                   />
                 </Link>
                 <div className="postTitleRow-1">
                   <span className="postProfileName">
-                    Дээврийн өрөөн дэх тэмдэглэл
+                    {`${el.owner.lastName} ${el.owner.firstName}`}
                   </span>
                   <div className="postTitleRow-1-1">
                     <span className="postProfileDate">
-                      November 5 at 7:59 PM ·{" "}
+                      {`${el.publishDate} `} ·{" "}
                     </span>
                     <GiEarthAmerica className="earthIcon" />
                   </div>
@@ -64,14 +74,8 @@ const Body = () => {
                 <FiMoreHorizontal className="moreIcon" />
               </div>
               <div className="postBodyContainer">
-                <div className="postDescription">
-                  ..өөр ертөнцийн замчлагч гараа сунгавал чангахан хөтөлнө..
-                </div>
-                <img
-                  src="https://scontent.fuln1-2.fna.fbcdn.net/v/t1.6435-9/253385749_285274640157925_6795512457734304217_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=WtLXXPAFSpwAX_a-idM&_nc_ht=scontent.fuln1-2.fna&oh=b9f7b51a3e86b2ece616c3de76be3f3d&oe=61B2A5CD"
-                  alt=""
-                  className="postBodyImage"
-                />
+                <div className="postDescription">{el.text}</div>
+                <img src={el.image} alt="" className="postBodyImage" />
                 <div className="reactionCountContainer">
                   <div
                     style={{
@@ -81,7 +85,7 @@ const Body = () => {
                     }}
                   >
                     <AiFillLike className="likeIcon" />
-                    <div className="likeCount">1.5K</div>
+                    <div className="likeCount">{el.likes}</div>
                   </div>
                   <div
                     style={{

@@ -104,6 +104,16 @@
   width: 27.5%;
 }
 
+.myProfile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #050505;
+  font-family: Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+}
+
 .settingsIcon,
 .notificationIcon,
 .messengerIcon,

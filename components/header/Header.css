@@ -1,4 +1,11 @@
 .headerContainer {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.componentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

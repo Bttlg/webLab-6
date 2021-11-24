@@ -16,27 +16,21 @@ import {
 import Navbar from "../navbar/Navbar";
 import Profile from "../profile/Profile";
 import Body from "../body/Body";
+import UserPost from "../userPost/UserPost";
 
 const Header = () => {
+  const { innerWidth: width, innerHeight: height } = window;
   return (
-    <div className="headerContainer">
-      <HashRouter component={Body}>
-        <Navbar />
-        <div className="componentContainer">
-          <Switch>
-            <Route path="/Body" component={Body} />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Route path="/Profile" component={Profile} />
-            </div>
-          </Switch>
-        </div>
-      </HashRouter>
-    </div>
+    <HashRouter component={Body}>
+      <Navbar />
+      <div className="componentContainer">
+        <Switch>
+          <Route path="/Body" component={Body} />
+          <Route path="/Profile/:id" component={Profile} />
+          <Route path="/UserPost/:id" component={UserPost} />
+        </Switch>
+      </div>
+    </HashRouter>
   );
 };
 

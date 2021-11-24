@@ -57,12 +57,17 @@ const Navbar = () => {
       </div>
       <div className="row-3">
         <div className="profile">
-          <img
-            src="https://scontent.fuln4-1.fna.fbcdn.net/v/t1.6435-1/cp0/p50x50/243952068_176293694635186_7633966180256714058_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=7206a8&_nc_ohc=ZEwZEwCoPEkAX810T0M&_nc_ht=scontent.fuln4-1.fna&oh=c8365b73bb5c4b7bb316cc5adf11c4de&oe=61B229C2"
-            alt="profilePic"
-            className="profilePic"
-          />
-          <p className="profileName">Бат</p>
+          <a
+            href="https://www.facebook.com/profile.php?id=100067636706277"
+            className="myProfile"
+          >
+            <img
+              src="https://scontent.fuln4-1.fna.fbcdn.net/v/t1.6435-1/cp0/p50x50/243952068_176293694635186_7633966180256714058_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=7206a8&_nc_ohc=ZEwZEwCoPEkAX810T0M&_nc_ht=scontent.fuln4-1.fna&oh=c8365b73bb5c4b7bb316cc5adf11c4de&oe=61B229C2"
+              alt="profilePic"
+              className="profilePic"
+            />
+            <p className="profileName">Бат</p>
+          </a>
         </div>
         <CgMenuGridO className="menuIcon" />
         <BsMessenger className="messengerIcon" />
